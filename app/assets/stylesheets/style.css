@@ -118,6 +118,10 @@ a {
   cursor: pointer;
 }
 
+.field_with_errors {
+  display: contents;
+}
+
 /* メイン */
 
 .greeting{

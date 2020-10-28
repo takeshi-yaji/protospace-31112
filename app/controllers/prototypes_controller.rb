@@ -8,8 +8,8 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.new
   end
   def create
-    Prototype.create(prototype_params)
-    if current_user.save
+    @prototype = Prototype.new(prototype_params)
+    if @prototype.save
       redirect_to root_path
     else
       render :new
@@ -46,7 +46,8 @@ class PrototypesController < ApplicationController
   end 
 
   def move_to_index
-    unless user_signed_in?
+    @prototype = Prototype.find(params[:id])
+    unless user_signed_in? && current_user.id == @prototype.user.id
       redirect_to action: :index
     end
   end
